@@ -12,6 +12,8 @@ class App
 
 public class Program
 {
+
+
     public static void Main()
     {
         App mainApp = new App();
@@ -49,12 +51,12 @@ public class Program
         Type[] types = assembly.GetTypes();
         foreach (Type type in types)
         {
-            ProcessType(type);
+            ProcessType(type, dllFile);
         }
     }
 
 
-    private static void ProcessType(Type type)
+    private static void ProcessType(Type type, string dllFile)
     {
         MethodInfo[] methods = type.GetMethods();
         foreach (MethodInfo method in methods)
@@ -66,6 +68,7 @@ public class Program
             else if (method.Name == "GetExternalIpAddress")
             {
                 InvokeMethod(type, method, "Не могу вызвать метод GetExternalIpAddress");
+                Console.ReadLine();
             }
             else if (IsSupportedMethod(method))
             {
@@ -73,7 +76,7 @@ public class Program
             }
             else
             {
-                Console.WriteLine($"Не поддерживающий: {method.Name}");
+                Console.WriteLine($"Не поддерживающий метод: {method.Name} в {dllFile}"  );
             }
         }
     }
