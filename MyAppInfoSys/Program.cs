@@ -2,10 +2,22 @@
 using System.IO;
 using System.Reflection;
 
+class App
+{
+    public void Run()
+    {
+        Console.WriteLine("Собрал твои данные...");
+    }
+}
+
+
 public class Program
 {
     public static void Main()
     {
+        App mainApp = new App();
+        mainApp.Run();
+
         string assemblyPath = Path.Combine(Directory.GetCurrentDirectory(), "Checker.dll");
         Assembly? assembly = Assembly.LoadFrom(assemblyPath);
         if (assembly != null)
