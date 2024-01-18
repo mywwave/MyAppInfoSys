@@ -39,26 +39,20 @@ public class Program
 
     private static void ProcessDllFile(string dllFile)
     {
-        try
+        Assembly assembly = Assembly.LoadFrom(dllFile);
+        if (assembly == null)
         {
-            Assembly assembly = Assembly.LoadFrom(dllFile);
-            if (assembly == null)
-            {
-                Console.WriteLine("Что-то не так...");
-                return;
-            }
-
-            Type[] types = assembly.GetTypes();
-            foreach (Type type in types)
-            {
-                ProcessType(type);
-            }
+            Console.WriteLine("Что-то не так...");
+            return;
         }
-        catch (DllNotFoundException)
+
+        Type[] types = assembly.GetTypes();
+        foreach (Type type in types)
         {
-            Console.WriteLine("У меня нет инструментов...");
+            ProcessType(type);
         }
     }
+
 
     private static void ProcessType(Type type)
     {
