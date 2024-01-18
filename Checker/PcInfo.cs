@@ -21,7 +21,7 @@ namespace Checker
             string username = Environment.UserName;
             string localIp = GetLocalIpAddress();
 
-            return $"Username: {username}\nLocal IP: {localIp}";
+            return $"Имя пользователя: {username}\nЛокальный IP: {localIp}";
         }
 
         private string GetLocalIpAddress()
